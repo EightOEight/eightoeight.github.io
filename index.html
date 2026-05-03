@@ -144,6 +144,100 @@
         <p class="invert-muted">Most hosts measure WordPress performance from inside PHP. We refuse to enter PHP at all unless we have to. That's where the speed comes from — not a marketing slide.</p>
       </header>
 
+      <figure class="flow" role="img" aria-labelledby="flow-title" aria-describedby="flow-desc">
+        <svg class="flow__svg" viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg">
+          <title id="flow-title">Request flow: cache hit versus cache miss</title>
+          <desc id="flow-desc">A visitor request enters nginx with the srcache and Lua modules. On a cache hit, nginx returns the response from Memcached or Redis in single-digit milliseconds without invoking WordPress. On a cache miss, nginx forwards to PHP-FPM, which queries MySQL, renders the page, writes the response back to the cache via srcache, and returns it. Subsequent requests for the same key stay on the fast path.</desc>
+
+          <defs>
+            <marker id="arr-yellow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#FFD600"/>
+            </marker>
+            <marker id="arr-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#8C93A0"/>
+            </marker>
+          </defs>
+
+          <!-- Top latency badge: HIT -->
+          <g>
+            <rect x="490" y="38" width="140" height="26" rx="13" fill="#FFD600"/>
+            <text x="560" y="56" text-anchor="middle" fill="#0A0A0A" font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" font-weight="700">~5 ms · cache hit</text>
+          </g>
+
+          <!-- Visitor (in) -->
+          <g>
+            <rect x="20" y="170" width="120" height="60" rx="10" fill="#15181F" stroke="#2B2F36" stroke-width="1.5"/>
+            <text x="80" y="198" text-anchor="middle" fill="#E6E8EE" font-family="Inter, sans-serif" font-size="14" font-weight="600">Visitor</text>
+            <text x="80" y="216" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">GET /article</text>
+          </g>
+
+          <!-- Arrow Visitor -> Nginx -->
+          <line x1="145" y1="200" x2="195" y2="200" stroke="#A2AAB6" stroke-width="2" marker-end="url(#arr-grey)"/>
+
+          <!-- Nginx + srcache (decision) -->
+          <g>
+            <rect x="200" y="160" width="180" height="80" rx="12" fill="#15181F" stroke="#FFD600" stroke-width="2"/>
+            <text x="290" y="188" text-anchor="middle" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="15" font-weight="700">nginx + srcache</text>
+            <text x="290" y="208" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">+ Lua: compute cache key</text>
+            <text x="290" y="224" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">vary by host, path, cookies</text>
+          </g>
+
+          <!-- HIT path: yellow curve up to cache -->
+          <path d="M 380 180 C 420 180, 430 100, 480 100" fill="none" stroke="#FFD600" stroke-width="3" marker-end="url(#arr-yellow)"/>
+          <text x="412" y="142" text-anchor="middle" fill="#FFD600" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="700">HIT</text>
+
+          <!-- Cache box (yellow filled — happy path) -->
+          <g>
+            <rect x="485" y="70" width="200" height="60" rx="10" fill="#FFD600"/>
+            <text x="585" y="96" text-anchor="middle" fill="#0A0A0A" font-family="Inter, sans-serif" font-size="14" font-weight="700">Memcached / Redis</text>
+            <text x="585" y="114" text-anchor="middle" fill="#0A0A0A" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" font-weight="500">page returned, no PHP touched</text>
+          </g>
+
+          <!-- Cache -> Visitor out (yellow) -->
+          <path d="M 685 100 L 760 100 L 760 185 L 775 185" fill="none" stroke="#FFD600" stroke-width="3" marker-end="url(#arr-yellow)"/>
+
+          <!-- MISS path: grey curve down -->
+          <path d="M 380 220 C 420 220, 425 310, 470 310" fill="none" stroke="#8C93A0" stroke-width="2" marker-end="url(#arr-grey)"/>
+          <text x="395" y="290" text-anchor="middle" fill="#8C93A0" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="700">MISS</text>
+
+          <!-- PHP-FPM box -->
+          <g>
+            <rect x="475" y="280" width="115" height="60" rx="10" fill="#15181F" stroke="#2B2F36" stroke-width="1.5"/>
+            <text x="532" y="308" text-anchor="middle" fill="#E6E8EE" font-family="Inter, sans-serif" font-size="14" font-weight="600">PHP-FPM</text>
+            <text x="532" y="326" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">renders WP</text>
+          </g>
+
+          <!-- Arrow PHP -> MySQL -->
+          <line x1="595" y1="310" x2="635" y2="310" stroke="#8C93A0" stroke-width="2" marker-end="url(#arr-grey)"/>
+
+          <!-- MySQL box -->
+          <g>
+            <rect x="640" y="280" width="105" height="60" rx="10" fill="#15181F" stroke="#2B2F36" stroke-width="1.5"/>
+            <text x="692" y="308" text-anchor="middle" fill="#E6E8EE" font-family="Inter, sans-serif" font-size="14" font-weight="600">MySQL</text>
+            <text x="692" y="326" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">queries</text>
+          </g>
+
+          <!-- Arrow MySQL -> back up to Visitor (also implies write-back to cache) -->
+          <path d="M 745 310 L 760 310 L 760 215 L 775 215" fill="none" stroke="#8C93A0" stroke-width="2" marker-end="url(#arr-grey)"/>
+
+          <!-- Bottom latency badge: MISS -->
+          <g>
+            <rect x="475" y="358" width="290" height="26" rx="13" fill="#15181F" stroke="#8C93A0" stroke-width="1"/>
+            <text x="620" y="376" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">~250 ms · first miss, then cached</text>
+          </g>
+
+          <!-- Visitor (out) -->
+          <g>
+            <rect x="775" y="170" width="125" height="60" rx="10" fill="#15181F" stroke="#2B2F36" stroke-width="1.5"/>
+            <text x="837" y="198" text-anchor="middle" fill="#E6E8EE" font-family="Inter, sans-serif" font-size="14" font-weight="600">Visitor</text>
+            <text x="837" y="216" text-anchor="middle" fill="#A2AAB6" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11">200 OK</text>
+          </g>
+        </svg>
+        <figcaption>
+          Cache hits never invoke WordPress. The first miss for a given URL renders through PHP-FPM and MySQL, writes the response back into the cache via <code>srcache_store</code>, and every subsequent request for that key stays on the fast path. No plugins. No <code>wp-content/cache</code>. No mystery purges.
+        </figcaption>
+      </figure>
+
       <div class="brag">
         <div class="brag__row">
           <div class="brag__num">01</div>
