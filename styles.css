@@ -374,8 +374,38 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 /* ---------- Grids + cards ---------- */
 .grid { display: grid; gap: 22px; }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 920px) { .grid--3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) { .grid--2 { grid-template-columns: 1fr; } }
 @media (max-width: 620px) { .grid--3 { grid-template-columns: 1fr; } }
+
+/* ---------- Outcome cards (non-dev value prop) ---------- */
+.outcome { padding: 30px 28px; }
+.outcome__tag {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--yellow);
+  padding: .4em .75em;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.outcome h3 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  letter-spacing: -.015em;
+}
+.outcome p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0;
+}
+.outcome p strong { color: var(--ink); font-weight: 700; }
 
 .card {
   background: var(--surface);
