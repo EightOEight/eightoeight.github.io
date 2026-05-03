@@ -55,9 +55,9 @@
           <a class="btn btn--ghost btn--lg" href="https://github.com/EightOEight" target="_blank" rel="noopener">Read the source ↗</a>
         </div>
         <ul class="hero__bullets">
-          <li><span aria-hidden="true">●</span> Operator + runtime, fully open source</li>
-          <li><span aria-hidden="true">●</span> Run in our cloud or in your VPC</li>
-          <li><span aria-hidden="true">●</span> 99.99% SLA on the Enterprise tier</li>
+          <li><span aria-hidden="true">●</span> Unmetered traffic — no overage fees, ever</li>
+          <li><span aria-hidden="true">●</span> AWS London (eu-west-2), UK data residency</li>
+          <li><span aria-hidden="true">●</span> 99.99% SLA on the Elite HA tier</li>
         </ul>
       </div>
       <aside class="hero__terminal" aria-label="Example WordPress custom resource">
@@ -208,59 +208,66 @@
     <div class="container">
       <header class="section__head">
         <span class="eyebrow">Pricing</span>
-        <h2>Pick the plan that fits the workload.</h2>
-        <p>All tiers run on the same hardened stack. The difference is replicas, support response, and how much we co-own the platform with your team.</p>
+        <h2>We bill the resources you provision. Never the visitors who arrive.</h2>
+        <p>Hosted in AWS London (<code>eu-west-2</code>) for UK data residency and ultra-low domestic latency. White-glove migration on every tier — we audit your codebase, not just move plugins.</p>
       </header>
 
       <div class="grid grid--3 pricing">
         <article class="card pricing__card">
-          <h3>Starter</h3>
-          <p class="pricing__price"><span class="pricing__amt" data-price="starter">$X</span><span class="pricing__per">/ site / mo</span></p>
-          <p class="pricing__tag">For single-site editorial &amp; marketing teams.</p>
+          <h3>Growth</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="growth">£299</span><span class="pricing__per">/ mo + VAT</span></p>
+          <p class="pricing__tag">High-growth UK startups &amp; established marketing sites.</p>
           <ul class="pricing__list">
-            <li>1 production site, 1 staging</li>
-            <li>2 vCPU / 4 GB RAM allocation</li>
-            <li>Nginx page cache (Memcached)</li>
-            <li>PHP 8.1–8.4, switch on demand</li>
-            <li>Daily backups, 7-day retention</li>
-            <li>Email support, next-business-day</li>
+            <li>Unmetered visitor traffic — capped by CPU, never by clicks</li>
+            <li>2 vCPU / 4 GB RAM / 50 GB NVMe</li>
+            <li>Cloudflare Enterprise security (DDoS, WAF, bot scoring)</li>
+            <li>Nginx page cache (Memcached) + PHP 8.1–8.4</li>
+            <li>Daily backups, 14-day retention</li>
+            <li>24/7 UK-based support, email &amp; chat</li>
+            <li>White-glove migration included</li>
           </ul>
-          <a class="btn btn--ghost btn--full" href="#contact">Get started</a>
+          <a class="btn btn--ghost btn--full" href="#contact">Talk to us</a>
         </article>
 
         <article class="card pricing__card pricing__card--featured">
           <span class="pricing__ribbon">Most popular</span>
-          <h3>Growth</h3>
-          <p class="pricing__price"><span class="pricing__amt" data-price="growth">$X</span><span class="pricing__per">/ site / mo</span></p>
-          <p class="pricing__tag">For high-traffic sites and small networks.</p>
+          <h3>Business Critical</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="business">£749</span><span class="pricing__per">/ mo + VAT</span></p>
+          <p class="pricing__tag">Large WooCommerce stores &amp; complex API integrations.</p>
           <ul class="pricing__list">
-            <li>Up to 5 sites, multi-environment</li>
-            <li>4 vCPU / 8 GB RAM, autoscaling</li>
-            <li>Redis page cache + object cache</li>
-            <li>CDN integration, image optimisation</li>
+            <li>100% dedicated resources — zero noisy neighbours</li>
+            <li>4 vCPU / 16 GB RAM / 100 GB NVMe</li>
+            <li>Redis page cache + object cache, multi-layer</li>
+            <li>WooCommerce-tuned PHP-FPM pools</li>
             <li>Hourly backups, 30-day retention</li>
-            <li>99.95% SLA, 4-hour response</li>
+            <li>15-minute emergency response SLA</li>
+            <li>99.95% uptime, white-glove migration included</li>
           </ul>
-          <a class="btn btn--primary btn--full" href="#contact">Talk to us</a>
+          <a class="btn btn--primary btn--full" href="#contact">Get a sizing quote</a>
         </article>
 
         <article class="card pricing__card">
-          <h3>Enterprise</h3>
-          <p class="pricing__price"><span class="pricing__amt" data-price="enterprise">Custom</span></p>
-          <p class="pricing__tag">For multisite networks &amp; regulated workloads.</p>
+          <h3>Elite HA</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="elite">From £1,499</span><span class="pricing__per">/ mo + VAT</span></p>
+          <p class="pricing__tag">Public sector, Global 2000, regulated industries.</p>
           <ul class="pricing__list">
-            <li>Unlimited sites, dedicated cluster</li>
-            <li>Run in your VPC or ours</li>
-            <li>SOC 2 / GDPR / data-residency options</li>
-            <li>SSO, audit logs, role-based access</li>
-            <li>Custom backup &amp; DR strategy</li>
-            <li>99.99% SLA, 1-hour response, named SRE</li>
+            <li>Multi-node auto-scaling cluster, multi-region failover</li>
+            <li>Custom CPU / RAM / storage sized to your workload</li>
+            <li>SOC 2 + GDPR-hardened environment, EU data residency</li>
+            <li>SSO (SAML / OIDC), audit logs, role-based access</li>
+            <li>Quarterly performance &amp; security review</li>
+            <li>99.99% SLA, 1-hour response, named on-call SRE</li>
+            <li>Dedicated UK Technical Account Manager</li>
           </ul>
           <a class="btn btn--ghost btn--full" href="#contact">Request a quote</a>
         </article>
       </div>
 
-      <p class="pricing__note">Self-host on your own cluster forever, free. Our open-source operator and runtime never get a paywall.</p>
+      <blockquote class="pricing__quote">
+        While competitors charge <strong>£2 per 1,000 excess visitors</strong>, we charge for the resources you provision — and nothing else. Your costs stay predictable through every traffic spike, sale, and viral post.
+      </blockquote>
+
+      <p class="pricing__note">All prices exclude VAT. Self-host on your own cluster forever, free — the operator and runtime are open source and never get a paywall.</p>
     </div>
   </section>
 
@@ -286,7 +293,15 @@
         </details>
         <details>
           <summary>What's the SLA?</summary>
-          <p>99.95% on Growth, 99.99% on Enterprise, both measured at the application layer (TTFB on a cached request) — not just at the load balancer. Credits are automatic and posted on the next invoice.</p>
+          <p>99.95% on Business Critical, 99.99% on Elite HA — both measured at the application layer (TTFB on a cached request), not just at the load balancer. Credits are automatic and posted on the next invoice in GBP, net of VAT.</p>
+        </details>
+        <details>
+          <summary>Will I get hit with traffic-overage charges?</summary>
+          <p>No. We bill the resources you provision (CPU, RAM, storage), not the visitors who arrive. WP Engine and Kinsta meter visits and charge per 1,000 over your cap; we don't. A viral post, a Black Friday spike, or a cited piece of journalism won't generate a surprise invoice.</p>
+        </details>
+        <details>
+          <summary>Where is the infrastructure hosted?</summary>
+          <p>AWS London (<code>eu-west-2</code>) by default, for UK data residency and ultra-low latency to UK readers and editors. Elite HA customers can pin to additional regions for failover or compliance — including EU-only setups for GDPR-sensitive workloads.</p>
         </details>
         <details>
           <summary>If it's open source, why pay you?</summary>
