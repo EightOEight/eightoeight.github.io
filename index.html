@@ -56,7 +56,7 @@
         </div>
         <ul class="hero__bullets">
           <li><span aria-hidden="true">●</span> Unmetered traffic — no overage fees, ever</li>
-          <li><span aria-hidden="true">●</span> AWS London (eu-west-2), UK data residency</li>
+          <li><span aria-hidden="true">●</span> AWS London or UK bare metal — your call</li>
           <li><span aria-hidden="true">●</span> 99.99% SLA on the Elite HA tier</li>
         </ul>
       </div>
@@ -127,6 +127,10 @@
         <article class="card">
           <h3>Gateway API + your edge of choice</h3>
           <p>Routing is decoupled by design. Point an <code>HTTPRoute</code>, an Ingress, a Cloud Load Balancer, or your existing CDN at the Service the operator generates. Your platform team keeps owning the edge — we don't try to take it.</p>
+        </article>
+        <article class="card">
+          <h3>AWS London <em>or</em> UK bare metal</h3>
+          <p>Same operator, same runtime, same upgrade path — running on AWS <code>eu-west-2</code> or on dedicated UK bare-metal Kubernetes. Bare metal wins on performance-per-£ for heavy WooCommerce, lets you skip hyperscaler egress fees, and rules out noisy-neighbour CPU steal entirely. Your call, per workload.</p>
         </article>
       </div>
     </div>
@@ -209,7 +213,7 @@
       <header class="section__head">
         <span class="eyebrow">Pricing</span>
         <h2>We bill the resources you provision. Never the visitors who arrive.</h2>
-        <p>Hosted in AWS London (<code>eu-west-2</code>) for UK data residency and ultra-low domestic latency. White-glove migration on every tier — we audit your codebase, not just move plugins.</p>
+        <p>Hosted in AWS London (<code>eu-west-2</code>) <em>or</em> on dedicated UK bare metal — pick the substrate that fits your workload and budget. Same operator, same SLA, same white-glove migration on every tier (we audit your codebase, not just move plugins).</p>
       </header>
 
       <div class="grid grid--3 pricing">
@@ -301,7 +305,7 @@
         </details>
         <details>
           <summary>Where is the infrastructure hosted?</summary>
-          <p>AWS London (<code>eu-west-2</code>) by default, for UK data residency and ultra-low latency to UK readers and editors. Elite HA customers can pin to additional regions for failover or compliance — including EU-only setups for GDPR-sensitive workloads.</p>
+          <p>Two substrates, your choice: AWS London (<code>eu-west-2</code>) for hyperscaler reach, or dedicated UK bare-metal Kubernetes for raw performance-per-£ and zero noisy-neighbour CPU steal. Bare metal also sidesteps AWS egress charges, which matters for image- and video-heavy editorial workloads. Either way the operator and runtime are identical — you can migrate between them without touching your site.</p>
         </details>
         <details>
           <summary>If it's open source, why pay you?</summary>
