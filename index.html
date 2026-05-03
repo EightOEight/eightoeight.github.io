@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EightOEight — Enterprise WordPress hosting on Kubernetes</title>
+  <meta name="description" content="Enterprise WordPress hosting built on an open-source Kubernetes operator. Page caching at the nginx layer, multi-version PHP, GitOps deploys. No agency markup.">
+  <meta name="theme-color" content="#FFD600">
+
+  <meta property="og:title" content="EightOEight — Enterprise WordPress hosting on Kubernetes">
+  <meta property="og:description" content="Open-source Kubernetes operator. nginx-level page cache. Multi-PHP. GitOps. Without the agency markup.">
+  <meta property="og:image" content="https://eightoeight.io/assets/logo.png">
+  <meta property="og:url" content="https://eightoeight.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/logo-128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="/" aria-label="EightOEight home">
+      <img src="assets/logo-128.png" alt="" width="36" height="36">
+      <span>EightOEight</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/EightOEight" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <a class="btn btn--primary nav__cta" href="#contact">Talk to us</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow">Enterprise WordPress, on your terms</span>
+        <h1>WordPress at <span class="hl">Kubernetes</span> scale.</h1>
+        <p class="lede">
+          Production-grade WordPress hosting built on an open-source Kubernetes operator we maintain in the open. Nginx-level page caching, multi-version PHP, GitOps deploys — without the agency markup or the vendor lock-in.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary btn--lg" href="#contact">Start hosting</a>
+          <a class="btn btn--ghost btn--lg" href="https://github.com/EightOEight" target="_blank" rel="noopener">Audit the source ↗</a>
+        </div>
+        <ul class="hero__bullets">
+          <li><span aria-hidden="true">●</span> Open-source operator + runtime</li>
+          <li><span aria-hidden="true">●</span> Bring your own cluster, or use ours</li>
+          <li><span aria-hidden="true">●</span> 99.95% uptime SLA available</li>
+        </ul>
+      </div>
+      <aside class="hero__terminal" aria-label="Example WordPress custom resource">
+        <div class="terminal__chrome" aria-hidden="true">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+          <span class="terminal__title">wordpress.yaml</span>
+        </div>
+        <pre class="terminal__body"><code><span class="c-key">apiVersion</span>: wordpress.presslabs.org/v1alpha1
+<span class="c-key">kind</span>: Wordpress
+<span class="c-key">metadata</span>:
+  <span class="c-key">name</span>: acme-corp
+<span class="c-key">spec</span>:
+  <span class="c-key">image</span>: ghcr.io/eightoeight/wordpress-runtime:6.9.1
+  <span class="c-key">replicas</span>: 3
+  <span class="c-key">env</span>:
+    - <span class="c-key">name</span>: STACK_PAGE_CACHE_ENABLED
+      <span class="c-key">value</span>: <span class="c-str">"true"</span>
+    - <span class="c-key">name</span>: STACK_PAGE_CACHE_BACKEND
+      <span class="c-key">value</span>: <span class="c-str">"redis"</span>
+    - <span class="c-key">name</span>: STACK_RESOLVER
+      <span class="c-key">value</span>: <span class="c-str">"10.96.0.10"</span>
+  <span class="c-cmt"># That's it. Apply and ship.</span></code></pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Why teams choose EightOEight">
+    <div class="container strip__inner">
+      <div class="strip__item"><strong>Open source</strong>three public repos, fully auditable</div>
+      <div class="strip__item"><strong>Kubernetes-native</strong>controller-runtime + Kubebuilder</div>
+      <div class="strip__item"><strong>Battle-tested origins</strong>derived from the Bitpoke stack</div>
+      <div class="strip__item"><strong>No vendor lock-in</strong>everything runs in your VPC if you want</div>
+    </div>
+  </section>
+
+  <section id="capabilities" class="section">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow">Capabilities</span>
+        <h2>Built for the WordPress workloads that actually matter.</h2>
+        <p>Editorial sites under traffic spikes. Multisite networks. Headless WP backends. The infra hard parts — caching, DNS, scaling, secrets — handled at the platform layer, not bolted on.</p>
+      </header>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <h3>Nginx-level page cache</h3>
+          <p>Cache hits never reach PHP. Configure Memcached or Redis backends with a single env var. Cache key generation, srcache fetch/store, and purges all live in templated nginx config — not a plugin.</p>
+        </article>
+        <article class="card">
+          <h3>Multi-version PHP</h3>
+          <p>Runtimes for PHP 8.1, 8.2, 8.3, and 8.4. Pin per site, upgrade at your own pace, run a canary on a newer minor without touching the rest of the fleet.</p>
+        </article>
+        <article class="card">
+          <h3>Cluster-aware DNS</h3>
+          <p>Configurable nginx resolver — point it at your cluster DNS (typically <code>10.96.0.10</code>) and upstream services resolve correctly. None of the hardcoded <code>8.8.8.8</code> nonsense most stacks ship with.</p>
+        </article>
+        <article class="card">
+          <h3>GitOps-friendly</h3>
+          <p>Sites are declared as Kubernetes custom resources. Commit your <code>Wordpress</code> CR, let Argo CD or Flux apply it. No clicking around dashboards. No drift.</p>
+        </article>
+        <article class="card">
+          <h3>Bedrock-style site template</h3>
+          <p>Composer-managed plugins, environment-driven config, sensible secrets handling. New sites boot locally in one command and deploy through the same operator.</p>
+        </article>
+        <article class="card">
+          <h3>Gateway API ready</h3>
+          <p>Routing is intentionally decoupled. Point any <code>HTTPRoute</code>, Ingress, or external load balancer at the generated Service — your platform team keeps owning the edge.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture" class="section section--alt">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three open-source pieces, one production stack.</h2>
+        <p>Every component is in a public repo. Read the code. Fork it. Run it yourself. Or let us run it for you — your choice, not ours.</p>
+      </header>
+
+      <div class="arch">
+        <a class="arch__card" href="https://github.com/EightOEight/wordpress-operator" target="_blank" rel="noopener">
+          <div class="arch__num">01</div>
+          <h3>wordpress-operator</h3>
+          <p>The Kubernetes controller. Watches <code>Wordpress</code> CRs and reconciles the Deployment, Service, Secret, and PVCs. Go 1.22, controller-runtime v0.18, Kubebuilder v3.</p>
+          <span class="arch__link">View on GitHub →</span>
+        </a>
+        <a class="arch__card" href="https://github.com/EightOEight/wordpress-runtime" target="_blank" rel="noopener">
+          <div class="arch__num">02</div>
+          <h3>wordpress-runtime</h3>
+          <p>The container images. Nginx + PHP-FPM tuned for WordPress, with page caching, configurable resolver, and Dockerize-templated config generated at startup.</p>
+          <span class="arch__link">View on GitHub →</span>
+        </a>
+        <a class="arch__card" href="https://github.com/EightOEight/wordpress-site-template" target="_blank" rel="noopener">
+          <div class="arch__num">03</div>
+          <h3>wordpress-site-template</h3>
+          <p>A Bedrock-style starter. Spin up a new site that boots locally in one command and deploys through the operator with no glue code in between.</p>
+          <span class="arch__link">View on GitHub →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Pick the plan that fits the workload.</h2>
+        <p>All tiers run on the same hardened stack. The difference is replicas, support response, and how much we co-own the platform with your team.</p>
+      </header>
+
+      <div class="grid grid--3 pricing">
+        <article class="card pricing__card">
+          <h3>Starter</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="starter">$X</span><span class="pricing__per">/ site / mo</span></p>
+          <p class="pricing__tag">For single-site editorial &amp; marketing teams.</p>
+          <ul class="pricing__list">
+            <li>1 production site, 1 staging</li>
+            <li>2 vCPU / 4 GB RAM allocation</li>
+            <li>Nginx page cache (Memcached)</li>
+            <li>PHP 8.1–8.4, switch on demand</li>
+            <li>Daily backups, 7-day retention</li>
+            <li>Email support, next-business-day</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#contact">Get started</a>
+        </article>
+
+        <article class="card pricing__card pricing__card--featured">
+          <span class="pricing__ribbon">Most popular</span>
+          <h3>Growth</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="growth">$X</span><span class="pricing__per">/ site / mo</span></p>
+          <p class="pricing__tag">For high-traffic sites and small networks.</p>
+          <ul class="pricing__list">
+            <li>Up to 5 sites, multi-environment</li>
+            <li>4 vCPU / 8 GB RAM, autoscaling</li>
+            <li>Redis page cache + object cache</li>
+            <li>CDN integration, image optimisation</li>
+            <li>Hourly backups, 30-day retention</li>
+            <li>99.95% SLA, 4-hour response</li>
+          </ul>
+          <a class="btn btn--primary btn--full" href="#contact">Talk to us</a>
+        </article>
+
+        <article class="card pricing__card">
+          <h3>Enterprise</h3>
+          <p class="pricing__price"><span class="pricing__amt" data-price="enterprise">Custom</span></p>
+          <p class="pricing__tag">For multisite networks &amp; regulated workloads.</p>
+          <ul class="pricing__list">
+            <li>Unlimited sites, dedicated cluster</li>
+            <li>Run in your VPC or ours</li>
+            <li>SOC 2 / GDPR / data-residency options</li>
+            <li>SSO, audit logs, role-based access</li>
+            <li>Custom backup &amp; DR strategy</li>
+            <li>99.99% SLA, 1-hour response, named SRE</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#contact">Request a quote</a>
+        </article>
+      </div>
+
+      <p class="pricing__note">Self-host on your own cluster forever, free. Our open-source operator and runtime never get a paywall.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="section section--alt">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow">Frequently asked</span>
+        <h2>Answers to the questions enterprise buyers actually ask.</h2>
+      </header>
+
+      <div class="faq">
+        <details>
+          <summary>Where does my site actually run?</summary>
+          <p>On a managed Kubernetes cluster — ours, or one in your own cloud account. Either way you get the same operator, the same runtime images, and the same upgrade path. No proprietary control plane, no escape hatch you can't open.</p>
+        </details>
+        <details>
+          <summary>Can we keep our existing themes and plugins?</summary>
+          <p>Yes. We ship a Bedrock-style site template that uses Composer for plugin management, but you can run any standard WordPress codebase. Custom plugins, premium themes, mu-plugins, drop-ins — all supported.</p>
+        </details>
+        <details>
+          <summary>How do migrations work?</summary>
+          <p>We import your existing site (database + uploads + codebase) into a staging environment running on our stack, run the diff against your live site, and cut over with DNS. Most migrations finish in a single business week.</p>
+        </details>
+        <details>
+          <summary>What's the SLA?</summary>
+          <p>99.95% on Growth, 99.99% on Enterprise, both measured at the application layer (TTFB on a cached request) — not just at the load balancer. Credits are automatic and posted on the next invoice.</p>
+        </details>
+        <details>
+          <summary>If it's open source, why pay you?</summary>
+          <p>Because running stateful workloads on Kubernetes on call at 2am is its own job. You're paying for the operations, the SLA, the response time, and the years of WordPress edge cases we've already handled. The code stays free either way.</p>
+        </details>
+        <details>
+          <summary>Do you offer SSO, audit logs, and data residency?</summary>
+          <p>On the Enterprise tier, yes — SAML / OIDC SSO, immutable audit logs, and region-pinned data residency including EU-only options for GDPR-sensitive customers.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta">
+    <div class="container cta__inner">
+      <div>
+        <h2>Move WordPress to a platform you can audit.</h2>
+        <p>Tell us about the site (or the network). We'll come back inside one business day with a sizing estimate and a migration plan.</p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--primary btn--lg" href="mailto:hello@eightoeight.io?subject=Enterprise%20WordPress%20hosting%20enquiry">Email hello@eightoeight.io</a>
+        <a class="btn btn--ghost btn--lg" href="https://github.com/EightOEight" target="_blank" rel="noopener">Browse the source ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/logo-128.png" alt="" width="32" height="32">
+      <div>
+        <strong>EightOEight</strong>
+        <p>Enterprise WordPress hosting on Kubernetes.</p>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <h4>Product</h4>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div>
+        <h4>Open source</h4>
+        <a href="https://github.com/EightOEight/wordpress-operator" target="_blank" rel="noopener">wordpress-operator</a>
+        <a href="https://github.com/EightOEight/wordpress-runtime" target="_blank" rel="noopener">wordpress-runtime</a>
+        <a href="https://github.com/EightOEight/wordpress-site-template" target="_blank" rel="noopener">wordpress-site-template</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@eightoeight.io">hello@eightoeight.io</a>
+        <a href="https://github.com/EightOEight" target="_blank" rel="noopener">github.com/EightOEight</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <span>© <span id="year">2026</span> EightOEight. All rights reserved.</span>
+    <span>WordPress is a registered trademark of the WordPress Foundation.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
