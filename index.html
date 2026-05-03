@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EightOEight — Enterprise WordPress hosting on Kubernetes</title>
-  <meta name="description" content="Enterprise WordPress hosting built on an open-source Kubernetes operator. Page caching at the nginx layer, multi-version PHP, GitOps deploys. No agency markup.">
+  <title>EightOEight — The only WordPress host built like real infrastructure</title>
+  <meta name="description" content="WordPress hosting on a Kubernetes operator we wrote, ship, and run. Nginx page cache that never touches PHP. Multi-PHP. GitOps. Built for editors who can't afford to wait, and platform teams who refuse to babysit.">
   <meta name="theme-color" content="#FFD600">
 
-  <meta property="og:title" content="EightOEight — Enterprise WordPress hosting on Kubernetes">
-  <meta property="og:description" content="Open-source Kubernetes operator. nginx-level page cache. Multi-PHP. GitOps. Without the agency markup.">
+  <meta property="og:title" content="EightOEight — The only WordPress host built like real infrastructure">
+  <meta property="og:description" content="A Kubernetes operator we wrote and ship in the open. Nginx-level page cache. Multi-PHP. GitOps. Zero plugin caching. Zero shared hosting compromises.">
   <meta property="og:image" content="https://eightoeight.io/assets/logo.png">
   <meta property="og:url" content="https://eightoeight.io">
   <meta property="og:type" content="website">
@@ -45,19 +45,19 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__copy">
-        <span class="eyebrow">Enterprise WordPress, on your terms</span>
-        <h1>WordPress at <span class="hl">Kubernetes</span> scale.</h1>
+        <span class="eyebrow">Finally, WordPress engineered like infrastructure</span>
+        <h1>WordPress, but it <span class="hl">scales like Kubernetes</span>.</h1>
         <p class="lede">
-          Production-grade WordPress hosting built on an open-source Kubernetes operator we maintain in the open. Nginx-level page caching, multi-version PHP, GitOps deploys — without the agency markup or the vendor lock-in.
+          The only WordPress host built on a Kubernetes operator we wrote, open-sourced, and run in production. Nginx serves cached pages in single-digit milliseconds — they never touch PHP. Multi-PHP, multi-WP, GitOps-native, fully auditable. Your editors stop waiting. Your platform team stops babysitting.
         </p>
         <div class="hero__ctas">
-          <a class="btn btn--primary btn--lg" href="#contact">Start hosting</a>
-          <a class="btn btn--ghost btn--lg" href="https://github.com/EightOEight" target="_blank" rel="noopener">Audit the source ↗</a>
+          <a class="btn btn--primary btn--lg" href="#contact">Move my WordPress</a>
+          <a class="btn btn--ghost btn--lg" href="https://github.com/EightOEight" target="_blank" rel="noopener">Read the source ↗</a>
         </div>
         <ul class="hero__bullets">
-          <li><span aria-hidden="true">●</span> Open-source operator + runtime</li>
-          <li><span aria-hidden="true">●</span> Bring your own cluster, or use ours</li>
-          <li><span aria-hidden="true">●</span> 99.95% uptime SLA available</li>
+          <li><span aria-hidden="true">●</span> Operator + runtime, fully open source</li>
+          <li><span aria-hidden="true">●</span> Run in our cloud or in your VPC</li>
+          <li><span aria-hidden="true">●</span> 99.99% SLA on the Enterprise tier</li>
         </ul>
       </div>
       <aside class="hero__terminal" aria-label="Example WordPress custom resource">
@@ -88,10 +88,10 @@
 
   <section class="strip" aria-label="Why teams choose EightOEight">
     <div class="container strip__inner">
-      <div class="strip__item"><strong>Open source</strong>three public repos, fully auditable</div>
-      <div class="strip__item"><strong>Kubernetes-native</strong>controller-runtime + Kubebuilder</div>
-      <div class="strip__item"><strong>Battle-tested origins</strong>derived from the Bitpoke stack</div>
-      <div class="strip__item"><strong>No vendor lock-in</strong>everything runs in your VPC if you want</div>
+      <div class="strip__item"><strong>0 lines of nginx config</strong>that you write, ever</div>
+      <div class="strip__item"><strong>4 PHP versions</strong>8.1, 8.2, 8.3, 8.4 — pick per site</div>
+      <div class="strip__item"><strong>3 open repos</strong>operator, runtime, site template</div>
+      <div class="strip__item"><strong>1 CRD</strong>declare a site, get a production deployment</div>
     </div>
   </section>
 
@@ -99,35 +99,76 @@
     <div class="container">
       <header class="section__head">
         <span class="eyebrow">Capabilities</span>
-        <h2>Built for the WordPress workloads that actually matter.</h2>
-        <p>Editorial sites under traffic spikes. Multisite networks. Headless WP backends. The infra hard parts — caching, DNS, scaling, secrets — handled at the platform layer, not bolted on.</p>
+        <h2>The hard parts of running WordPress, already solved.</h2>
+        <p>Most "managed WordPress" hosts hand you a faster shared box and a caching plugin. We hand you a real Kubernetes platform — page caching, scaling, DNS, secrets, and rollouts engineered at the infra layer, not bolted on with a plugin.</p>
       </header>
 
       <div class="grid grid--3">
         <article class="card">
-          <h3>Nginx-level page cache</h3>
-          <p>Cache hits never reach PHP. Configure Memcached or Redis backends with a single env var. Cache key generation, srcache fetch/store, and purges all live in templated nginx config — not a plugin.</p>
+          <h3>Page cache that never touches PHP</h3>
+          <p>Nginx + srcache + Lua serve hot pages straight from Memcached or Redis in single-digit milliseconds. Cache misses spawn a single backend request and refill the cache atomically. No WP plugin, no <code>wp-content/cache</code>, no nightly cache purges that nuke your site.</p>
         </article>
         <article class="card">
-          <h3>Multi-version PHP</h3>
-          <p>Runtimes for PHP 8.1, 8.2, 8.3, and 8.4. Pin per site, upgrade at your own pace, run a canary on a newer minor without touching the rest of the fleet.</p>
+          <h3>Four PHP versions, one runtime</h3>
+          <p>PHP 8.1, 8.2, 8.3, 8.4 — purpose-built runtime images for each. Pin per site. Upgrade one site without touching the rest of the fleet. Canary the new minor on staging, then promote the same image tag to prod.</p>
         </article>
         <article class="card">
-          <h3>Cluster-aware DNS</h3>
-          <p>Configurable nginx resolver — point it at your cluster DNS (typically <code>10.96.0.10</code>) and upstream services resolve correctly. None of the hardcoded <code>8.8.8.8</code> nonsense most stacks ship with.</p>
+          <h3>Cluster-native DNS, the way it should be</h3>
+          <p>Configurable nginx resolver. Point it at your cluster DNS (<code>10.96.0.10</code>), and every <code>proxy_pass</code> resolves cleanly to internal services. No more hardcoded <code>8.8.8.8</code> like the upstream stacks still ship with.</p>
         </article>
         <article class="card">
-          <h3>GitOps-friendly</h3>
-          <p>Sites are declared as Kubernetes custom resources. Commit your <code>Wordpress</code> CR, let Argo CD or Flux apply it. No clicking around dashboards. No drift.</p>
+          <h3>GitOps-native, top to bottom</h3>
+          <p>A site is a Kubernetes <code>Wordpress</code> CR. Commit it. Let Argo CD or Flux apply it. The operator reconciles Deployments, Services, Secrets, and PVCs to match. No dashboards. No drift. No "who deployed what at 4pm Friday".</p>
         </article>
         <article class="card">
-          <h3>Bedrock-style site template</h3>
-          <p>Composer-managed plugins, environment-driven config, sensible secrets handling. New sites boot locally in one command and deploy through the same operator.</p>
+          <h3>Bedrock-style site template, batteries included</h3>
+          <p>Composer-managed plugins. Environment-driven config. Secrets via Kubernetes, not <code>wp-config.php</code>. New sites boot locally in one command and ship through the same operator that runs production. Clone the template, edit one file, push.</p>
         </article>
         <article class="card">
-          <h3>Gateway API ready</h3>
-          <p>Routing is intentionally decoupled. Point any <code>HTTPRoute</code>, Ingress, or external load balancer at the generated Service — your platform team keeps owning the edge.</p>
+          <h3>Gateway API + your edge of choice</h3>
+          <p>Routing is decoupled by design. Point an <code>HTTPRoute</code>, an Ingress, a Cloud Load Balancer, or your existing CDN at the Service the operator generates. Your platform team keeps owning the edge — we don't try to take it.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-faster" class="section section--ink">
+    <div class="container">
+      <header class="section__head">
+        <span class="eyebrow eyebrow--invert">Why it's faster</span>
+        <h2 class="invert">Faster than "managed WordPress" because it isn't.</h2>
+        <p class="invert-muted">Most hosts measure WordPress performance from inside PHP. We refuse to enter PHP at all unless we have to. That's where the speed comes from — not a marketing slide.</p>
+      </header>
+
+      <div class="brag">
+        <div class="brag__row">
+          <div class="brag__num">01</div>
+          <div class="brag__body">
+            <h3>The cache is in nginx, not in WordPress.</h3>
+            <p>Plugins like WP Rocket cache <em>after</em> WordPress has already loaded — every request still spins up PHP-FPM, parses 50+ plugins, and connects to MySQL. We cache <em>before</em> WordPress. Hot pages skip PHP entirely. Cold pages refill the cache in one trip.</p>
+          </div>
+        </div>
+        <div class="brag__row">
+          <div class="brag__num">02</div>
+          <div class="brag__body">
+            <h3>Replicas scale horizontally, like real software.</h3>
+            <p>Traffic spike? Bump <code>spec.replicas</code>, or let the HPA do it for you. The operator rolls new pods, the Service fronts them, the cache stays warm across replicas because it's external. No "upgrade your VM" downtime. No five-minute IIS reboots.</p>
+          </div>
+        </div>
+        <div class="brag__row">
+          <div class="brag__num">03</div>
+          <div class="brag__body">
+            <h3>Config is generated at startup, from your environment.</h3>
+            <p>Dockerize templates render nginx + PHP-FPM config at container boot from <code>spec.env</code>. Want a different cache backend? One env var. Different upload limit? One env var. No SSH, no <code>nginx -s reload</code>, no config drift between staging and prod.</p>
+          </div>
+        </div>
+        <div class="brag__row">
+          <div class="brag__num">04</div>
+          <div class="brag__body">
+            <h3>It's open source, so you can prove every claim on this page.</h3>
+            <p>Three repos. <code>wordpress-operator</code> &amp; <code>wordpress-runtime</code> are Apache 2.0; <code>wordpress-site-template</code> is MIT. Read the controller code. Read the nginx templates. Run it on your own cluster and pay us nothing. We're confident enough to compete on operations, not lock-in.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
