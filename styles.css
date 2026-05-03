@@ -291,6 +291,40 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 .invert { color: #fff; }
 .invert-muted { color: #A2AAB6; }
 
+/* ---------- Request flow diagram ---------- */
+.flow {
+  max-width: 940px;
+  margin: 0 auto 56px;
+  padding: 24px 28px 8px;
+  background: #15181F;
+  border: 1px solid #1E2128;
+  border-radius: var(--radius-lg);
+}
+.flow__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.flow figcaption {
+  margin: 8px auto 12px;
+  text-align: center;
+  color: #A2AAB6;
+  font-size: .94rem;
+  line-height: 1.55;
+  max-width: 720px;
+}
+.flow figcaption code {
+  background: rgba(255, 214, 0, .12);
+  color: var(--yellow);
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-size: .92em;
+}
+@media (max-width: 620px) {
+  .flow { padding: 16px 12px 8px; }
+  .flow figcaption { font-size: .88rem; }
+}
+
 /* ---------- Brag rows (why it's faster) ---------- */
 .brag {
   max-width: 880px;
