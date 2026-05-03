@@ -169,6 +169,10 @@
           <h3>AWS London <em>or</em> UK bare metal</h3>
           <p>Same operator, same runtime, same upgrade path — running on AWS <code>eu-west-2</code> or on dedicated UK bare-metal Kubernetes. Bare metal wins on performance-per-£ for heavy WooCommerce, lets you skip hyperscaler egress fees, and rules out noisy-neighbour CPU steal entirely. Your call, per workload.</p>
         </article>
+        <article class="card">
+          <h3>Cloud-native media offloading</h3>
+          <p>Stop pre-buying disk "just in case". Every site offloads uploads, attachments, and editorial assets to <strong>Google Cloud Storage</strong> — <strong>99.999999999%</strong> durability (eleven nines), multi-region availability, single-digit-ms first-byte from any continent. No disk-space markups when next month's campaign drops 80 GB of hero video. Storage scales independently of compute; your invoice doesn't lurch every time the editorial team gets ambitious.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -355,6 +359,7 @@
           <ul class="pricing__list">
             <li>Unmetered visitor traffic — capped by CPU, never by clicks</li>
             <li>2 vCPU / 4 GB RAM / 50 GB NVMe</li>
+            <li><strong>100 GB Google Cloud Storage</strong> for media offload</li>
             <li>Cloudflare Enterprise security (DDoS, WAF, bot scoring)</li>
             <li>Nginx page cache (Memcached) + PHP 8.1–8.4</li>
             <li>Daily backups, 14-day retention</li>
@@ -372,6 +377,7 @@
           <ul class="pricing__list">
             <li>100% dedicated resources — zero noisy neighbours</li>
             <li>4 vCPU / 16 GB RAM / 100 GB NVMe</li>
+            <li><strong>1 TB Google Cloud Storage</strong>, eleven nines durability</li>
             <li>Redis page cache + object cache, multi-layer</li>
             <li>WooCommerce-tuned PHP-FPM pools</li>
             <li>Hourly backups, 30-day retention</li>
@@ -387,7 +393,8 @@
           <p class="pricing__tag">Public sector, Global 2000, regulated industries.</p>
           <ul class="pricing__list">
             <li>Multi-node auto-scaling cluster, multi-region failover</li>
-            <li>Custom CPU / RAM / storage sized to your workload</li>
+            <li>Custom CPU / RAM / NVMe sized to your workload</li>
+            <li><strong>3 TB+ Google Cloud Storage</strong>, multi-region replication</li>
             <li>SOC 2 + GDPR-hardened environment, EU data residency</li>
             <li>SSO (SAML / OIDC), audit logs, role-based access</li>
             <li>Quarterly performance &amp; security review</li>
@@ -429,6 +436,10 @@
         <details>
           <summary>How are secrets and credentials handled?</summary>
           <p>As Kubernetes <code>Secret</code> resources, mounted into the pod at runtime as environment variables — never written to disk in <code>wp-config.php</code> or a <code>.env</code> file. Rotate them via <code>kubectl</code>, the External Secrets Operator (pulling from Vault, AWS Secrets Manager, GCP Secret Manager), or Sealed Secrets / SOPS for fully GitOps-encrypted workflows. Access is governed by your cluster's RBAC, and every read is auditable. None of this requires a WordPress plugin.</p>
+        </details>
+        <details>
+          <summary>Where do uploads and media files live?</summary>
+          <p>Off the application disk, in Google Cloud Storage. WordPress reads and writes through a stream wrapper, so <code>wp_upload_dir()</code>, the media library, and any plugin that calls <code>wp_get_attachment_url()</code> all just work — they get a CDN-fronted GCS URL instead of a local path. Eleven nines of durability, no filesystem-locking surprises during deployment, and pod restarts no longer lose unsynced media. Storage allowances are bundled into each tier (100 GB on Growth, 1 TB on Business Critical, 3 TB+ on Elite HA); overages are billed at our cost, not marked up.</p>
         </details>
         <details>
           <summary>How do migrations work?</summary>
