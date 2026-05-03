@@ -121,8 +121,12 @@
           <p>A site is a Kubernetes <code>Wordpress</code> CR. Commit it. Let Argo CD or Flux apply it. The operator reconciles Deployments, Services, Secrets, and PVCs to match. No dashboards. No drift. No "who deployed what at 4pm Friday".</p>
         </article>
         <article class="card">
-          <h3>Bedrock-style site template, batteries included</h3>
-          <p>Composer-managed plugins. Environment-driven config. Secrets via Kubernetes, not <code>wp-config.php</code>. New sites boot locally in one command and ship through the same operator that runs production. Clone the template, edit one file, push.</p>
+          <h3>Composer-first, Bedrock-style codebase</h3>
+          <p>Sites are real PHP projects, not folders someone FTP'd up at 2am. Plugins, themes, and core are pinned in <code>composer.json</code>, locked via <code>composer.lock</code>, and reviewed in pull requests — supply-chain provenance is real. <code>composer require wpackagist-plugin/yoast-seo</code> adds a plugin; <code>docker-compose up</code> boots the same image locally. Zero drift between dev and prod.</p>
+        </article>
+        <article class="card">
+          <h3>Secrets that aren't on a server</h3>
+          <p>Database credentials, API keys, OAuth tokens — everything sensitive lives in Kubernetes <code>Secret</code> resources, mounted into the pod at runtime. Not in <code>wp-config.php</code>. Not in a plaintext <code>.env</code> on a server. Not in your git history. Rotate via <code>kubectl</code> or your existing manager (Vault, AWS Secrets Manager, GCP Secret Manager) — SOC 2 evidence collection becomes a one-screenshot exercise.</p>
         </article>
         <article class="card">
           <h3>Gateway API + your edge of choice</h3>
@@ -383,7 +387,15 @@
         </details>
         <details>
           <summary>Can we keep our existing themes and plugins?</summary>
-          <p>Yes. We ship a Bedrock-style site template that uses Composer for plugin management, but you can run any standard WordPress codebase. Custom plugins, premium themes, mu-plugins, drop-ins — all supported.</p>
+          <p>Yes. We ship a Bedrock-style site template that uses Composer for plugin management, but you can run any standard WordPress codebase — custom plugins, premium themes, mu-plugins, drop-ins. One thing changes: in production the filesystem is read-only, so plugins enter through pull requests and code review, not through wp-admin uploads. That removes one of WordPress's largest attack surfaces by default.</p>
+        </details>
+        <details>
+          <summary>What does our developer workflow look like?</summary>
+          <p>Standard Composer. <code>composer require wpackagist-plugin/&lt;name&gt;</code> adds a plugin; you commit <code>composer.json</code> and <code>composer.lock</code>; the next image build picks it up; the operator rolls it to production. <code>docker-compose up</code> boots the exact same runtime image locally for development. Code review runs through your existing GitHub or GitLab process. The <code>Wordpress</code> custom resource lives alongside your application code in a Helm chart or Kustomize overlay — infrastructure ships through the same PRs as code.</p>
+        </details>
+        <details>
+          <summary>How are secrets and credentials handled?</summary>
+          <p>As Kubernetes <code>Secret</code> resources, mounted into the pod at runtime as environment variables — never written to disk in <code>wp-config.php</code> or a <code>.env</code> file. Rotate them via <code>kubectl</code>, the External Secrets Operator (pulling from Vault, AWS Secrets Manager, GCP Secret Manager), or Sealed Secrets / SOPS for fully GitOps-encrypted workflows. Access is governed by your cluster's RBAC, and every read is auditable. None of this requires a WordPress plugin.</p>
         </details>
         <details>
           <summary>How do migrations work?</summary>
