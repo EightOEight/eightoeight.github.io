@@ -89,8 +89,8 @@
   <section class="strip" aria-label="Why teams choose EightOEight">
     <div class="container strip__inner">
       <div class="strip__item"><strong>0 lines of nginx config</strong>that you write, ever</div>
-      <div class="strip__item"><strong>4 PHP versions</strong>8.1, 8.2, 8.3, 8.4 — pick per site</div>
-      <div class="strip__item"><strong>3 open repos</strong>operator, runtime, site template</div>
+      <div class="strip__item"><strong>0 third-party images</strong>supply chain, end-to-end ours</div>
+      <div class="strip__item"><strong>4 open repos</strong>operator, runtime, site template, mu-plugin</div>
       <div class="strip__item"><strong>1 CRD</strong>declare a site, get a production deployment</div>
     </div>
   </section>
@@ -122,7 +122,7 @@
         <article class="card outcome">
           <span class="outcome__tag">For your CTO &amp; procurement</span>
           <h3>Vendor risk that actually clears review.</h3>
-          <p>Three open-source repos (Apache 2.0 + MIT). If we vanish tomorrow, you take the operator and runtime to any Kubernetes cluster on the planet and keep running — no rebuild, no hostage situation, no rip-and-replace. SOC 2 + GDPR-hardened on Elite HA. UK data residency by default. Procurement stops blocking the deal.</p>
+          <p>Four open-source repos (Apache 2.0 + MIT). The full build chain — operator, runtime, openresty, mu-plugin — is sourced and built under EightOEight; <strong>zero third-party images in our pipeline</strong>. If we vanish tomorrow, you take everything to any Kubernetes cluster on the planet and keep running — no rebuild, no hostage situation, no rip-and-replace. SOC 2 + GDPR-hardened on Elite HA. UK data residency by default. Procurement stops blocking the deal.</p>
         </article>
       </div>
     </div>
@@ -316,8 +316,8 @@
     <div class="container">
       <header class="section__head">
         <span class="eyebrow">How it works</span>
-        <h2>Three open-source pieces, one production stack.</h2>
-        <p>Every component is in a public repo. Read the code. Fork it. Run it yourself. Or let us run it for you — your choice, not ours.</p>
+        <h2>Four open-source pieces, one production stack.</h2>
+        <p>Every component is in a public repo. Even openresty itself is built from source under our org. Read the code. Fork it. Run it yourself. Or let us run it for you — your choice, not ours.</p>
       </header>
 
       <div class="arch">
@@ -330,11 +330,17 @@
         <a class="arch__card" href="https://github.com/EightOEight/wordpress-runtime" target="_blank" rel="noopener">
           <div class="arch__num">02</div>
           <h3>wordpress-runtime</h3>
-          <p>The container images. Nginx + PHP-FPM tuned for WordPress, with page caching, configurable resolver, and Dockerize-templated config generated at startup.</p>
+          <p>The container images. Nginx + PHP-FPM tuned for WordPress, with page caching, configurable resolver, and Dockerize-templated config generated at startup. Builds openresty from source — no upstream apt repo dependency.</p>
+          <span class="arch__link">View on GitHub →</span>
+        </a>
+        <a class="arch__card" href="https://github.com/EightOEight/wp-mu-plugin" target="_blank" rel="noopener">
+          <div class="arch__num">03</div>
+          <h3>wp-mu-plugin</h3>
+          <p>The WordPress side of the integration. Cache invalidation hooks, multisite rules, post-save events. Loaded as a must-use plugin so every site gets it without configuration.</p>
           <span class="arch__link">View on GitHub →</span>
         </a>
         <a class="arch__card" href="https://github.com/EightOEight/wordpress-site-template" target="_blank" rel="noopener">
-          <div class="arch__num">03</div>
+          <div class="arch__num">04</div>
           <h3>wordpress-site-template</h3>
           <p>A Bedrock-style starter. Spin up a new site that boots locally in one command and deploys through the operator with no glue code in between.</p>
           <span class="arch__link">View on GitHub →</span>
