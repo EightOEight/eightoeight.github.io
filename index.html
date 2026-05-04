@@ -142,8 +142,8 @@
           <p>Nginx + srcache + Lua serve hot pages straight from Memcached or Redis in single-digit milliseconds. Cache misses spawn a single backend request and refill the cache atomically. No WP plugin, no <code>wp-content/cache</code>, no nightly cache purges that nuke your site.</p>
         </article>
         <article class="card">
-          <h3>Four PHP versions, one runtime</h3>
-          <p>PHP 8.1, 8.2, 8.3, 8.4 — purpose-built runtime images for each. Pin per site. Upgrade one site without touching the rest of the fleet. Canary the new minor on staging, then promote the same image tag to prod.</p>
+          <h3>Modern PHP only — 8.3 + 8.4</h3>
+          <p>Purpose-built runtime images for the only two PHP releases that aren't EOL — <strong>8.3</strong> and <strong>8.4</strong>. Pin per site. Canary 8.4 on staging, then promote the same image tag to prod. We don't ship images for PHP versions upstream no longer security-patches.</p>
         </article>
         <article class="card">
           <h3>Cluster-native DNS, the way it should be</h3>
@@ -367,7 +367,7 @@
             <li>2 vCPU / 4 GB RAM / 50 GB NVMe</li>
             <li><strong>100 GB object storage</strong> (S3, GCS, or compatible)</li>
             <li>Cloudflare Enterprise security (DDoS, WAF, bot scoring)</li>
-            <li>Nginx page cache (Memcached) + PHP 8.1–8.4</li>
+            <li>Nginx page cache (Memcached) + PHP 8.3 / 8.4</li>
             <li>Daily backups, 14-day retention</li>
             <li>24/7 UK-based support, email &amp; chat</li>
             <li>White-glove migration included</li>
